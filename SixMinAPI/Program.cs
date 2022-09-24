@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SixMinAPI.Data;
@@ -14,6 +15,8 @@ sqlConnection.UserID = builder.Configuration["UserId"];
 sqlConnection.Password = builder.Configuration["Password"];
 
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(sqlConnection.ConnectionString));
+builder.Services.AddScoped<ICommandRepository, CommandRepository>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 #endregion
 
