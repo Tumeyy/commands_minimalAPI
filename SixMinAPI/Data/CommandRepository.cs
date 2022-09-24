@@ -13,7 +13,7 @@ namespace SixMinAPI.Data
         {
             _dbContext = dbContext;
         }
-        public async Task CreateCommand(Command command)
+        public async Task CreateCommandAsync(Command command)
         {
             if (command == null)
             {
@@ -33,17 +33,17 @@ namespace SixMinAPI.Data
             _dbContext.Commands.Remove(command);
         }
 
-        public async Task<IEnumerable<Command>> GetAllCommands()
+        public async Task<IEnumerable<Command>> GetAllCommandsAsync()
         {
             return await _dbContext.Commands!.ToListAsync();
         }
 
-        public async Task<Command?> GetCommandById(int id)
+        public async Task<Command?> GetCommandByIdAsync(int id)
         {
             return await _dbContext.Commands.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task SaveChanges()
+        public async Task SaveChangesAsync()
         {
             await _dbContext.SaveChangesAsync();
         }
